@@ -27,11 +27,15 @@ function WeatherGrid({ city }) {
 
   return (
     <div style={{ border: '1px solid #ccc', padding: '10px', marginBottom: '20px' }}>
-      <h2 style={{ marginBottom: '10px' }}>{city} ☀️</h2>
+      <h2 style={{ marginBottom: '10px' }}>{city} </h2>
       <div>
         <p>Temperature: {weatherData.main.temp}°C</p>
         <p>Wind: {weatherData.wind.speed} m/s</p>
         <p>Humidity: {weatherData.main.humidity}%</p>
+        <img
+          src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`}
+          alt={weatherData.weather[0].description}
+        />
       </div>
     </div>
   );

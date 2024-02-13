@@ -1,5 +1,3 @@
-// CityWeatherTables.jsx
-
 import React, { useState, useEffect } from 'react';
 
 function CityWeatherTables({ city }) {
@@ -32,27 +30,20 @@ function CityWeatherTables({ city }) {
     return date.toLocaleDateString('en-US', options);
   };
 
-  // Filter out one forecast per day for the next 5 days
-  const filteredForecasts = weatherData.list.reduce((acc, forecast) => {
-    const date = forecast.dt_txt.split(' ')[0];
-    if (!acc[date]) {
-      acc[date] = forecast;
-    }
-    return acc;
-  }, {});
-
-  const forecastsArray = Object.values(filteredForecasts).slice(0, 5);
-
   return (
     <div className="city-weather-tables">
       <ul className="forecast-list">
-        {forecastsArray.map((forecast, idx) => (
+        {weatherData.list.slice(0, 5).map((forecast, idx) => (
           <li key={idx} className="forecast-item">
-            <div>
+            <div className="city-container">
               <h3>Date: {formatDate(forecast.dt_txt)}</h3>
-              <p>Temperature: {forecast.main.temp}°C</p>
+              <p>Temp: {forecast.main.temp}°C</p>
               <p>Wind: {forecast.wind.speed} m/s</p>
               <p>Humidity: {forecast.main.humidity}%</p>
+              <img
+                src={`https://openweathermap.org/img/wn/${forecast.weather[0].icon}.png`}
+                alt={forecast.weather[0].description}
+              />
             </div>
           </li>
         ))}
