@@ -31,23 +31,26 @@ function CityWeatherTables({ city }) {
   };
 
   return (
-    <div className="city-weather-tables">
-      <ul className="forecast-list">
-        {weatherData.list.slice(0, 5).map((forecast, idx) => (
-          <li key={idx} className="forecast-item">
-            <div className="city-container">
-              <h3>Date: {formatDate(forecast.dt_txt)}</h3>
-              <p>Temp: {forecast.main.temp}°C</p>
-              <p>Wind: {forecast.wind.speed} m/s</p>
-              <p>Humidity: {forecast.main.humidity}%</p>
-              <img
-                src={`https://openweathermap.org/img/wn/${forecast.weather[0].icon}.png`}
-                alt={forecast.weather[0].description}
-              />
-            </div>
-          </li>
-        ))}
-      </ul>
+    <div className="weather-container">
+      <div className="forecast-title">{city}'s 5-Day Forecast</div>
+      <div className="city-weather-tables">
+        <ul className="forecast-list">
+          {weatherData.list.slice(0, 5).map((forecast, idx) => (
+            <li key={idx} className="forecast-item">
+              <div className="city-container">
+                <h3>Date: {formatDate(forecast.dt_txt)}</h3>
+                <p>Temp: {forecast.main.temp}°C</p>
+                <p>Wind: {forecast.wind.speed} m/s</p>
+                <p>Humidity: {forecast.main.humidity}%</p>
+                <img
+                  src={`https://openweathermap.org/img/wn/${forecast.weather[0].icon}.png`}
+                  alt={forecast.weather[0].description}
+                />
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

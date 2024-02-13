@@ -73,7 +73,7 @@ body {
   margin-right: 20px; 
   border: 2px solid white; 
   padding: 10px; 
-  height: 200px;
+  height: 180px;
   width: 165px; 
 }
 
@@ -105,4 +105,16 @@ body {
 
 .forecast-item {
   margin-right: 5px;
+}
+
+.weather-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.forecast-title {
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: -20px;
 }
