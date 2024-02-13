@@ -35,11 +35,12 @@ body {
   width: 350px;
   border-right: 1px solid #ccc;
   border: 1px solid white;
-  height: 600px;
+  height: 550px;
   margin-left: 25px;
   flex-shrink: 0; 
 }
 
+/* Single Day Forecast Container */
 .body-container {
   display: flex;
   flex-direction: column; 
@@ -48,10 +49,11 @@ body {
   flex-grow: 1;
   margin-left: 20px;
   width: 1000px;
-  height: 275px;
+  height: 250px;
   padding-top: 40px;
 }
 
+/* 5-Day Forecast Container */
 .body-container:nth-child(2) {
   margin-top: 50px; 
   overflow-x: auto; 
@@ -61,6 +63,7 @@ body {
   justify-content: center; 
 }
 
+/* Tables inside 5-Day Forecast Container */
 .body-container:nth-child(2) .city-weather-tables {
   overflow-x: auto; 
   white-space: nowrap; 
@@ -68,12 +71,13 @@ body {
   justify-content: space-between;
 }
 
+/* 5-Day Forecast Date Containers */
 .city-container {
   display: inline-block; 
   margin-right: 20px; 
   border: 2px solid white; 
   padding: 10px; 
-  height: 180px;
+  height: 160px;
   width: 165px; 
 }
 
@@ -97,6 +101,7 @@ body {
   margin-bottom: 10px; 
 }
 
+/* Forecast Data list in 5-Day Forecast Container */
 .forecast-list {
   display: flex;
   list-style-type: none;
@@ -115,6 +120,6 @@ body {
 
 .forecast-title {
   text-align: center;
-  margin-bottom: 20px;
-  margin-top: -20px;
+  margin-bottom: 15px;
+  margin-top: -30px;
 }
