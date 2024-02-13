@@ -1,0 +1,57 @@
+/* App.css */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  padding-top: 120px;
+}
+
+.container {
+  display: flex;
+  height: calc(100vh - 60px);
+}
+
+.header {
+  background-color: black;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+  z-index: 999;
+  position: fixed;
+  top: 0;
+}
+
+.title {
+  margin: 0;
+}
+
+.aside {
+  width: 350px;
+  border-right: 1px solid #ccc;
+  border: 1px solid white;
+  height: 600px;
+  margin-left: 25px;
+  flex-shrink: 0; 
+}
+
+.body-container {
+  display: flex;
+  flex-direction: column; 
+  border: 1px solid white;
+  padding: 20px;
+  flex-grow: 1;
+  margin-left: 20px;
+  width: 1000px;
+  height: 275px;
+  padding-top: 40px;
+}
+
+.body-container:nth-child(2) {
+  margin-top: 50px; 
+}
