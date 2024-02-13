@@ -54,4 +54,45 @@ body {
 
 .body-container:nth-child(2) {
   margin-top: 50px; 
+  overflow-x: auto; 
+  white-space: nowrap; 
+  width: 1000px;
+  display: flex;
+  justify-content: center; 
+}
+
+.body-container:nth-child(2) .city-weather-tables {
+  overflow-x: auto; 
+  white-space: nowrap; 
+  display: flex; 
+  justify-content: space-between;
+}
+
+.city-container {
+  display: inline-block; 
+  margin-right: 20px; 
+  border: 2px solid white; 
+  padding: 10px; 
+  height: 200px;
+  width: 165px; 
+}
+
+.city-weather-tables {
+  white-space: nowrap; 
+}
+
+.city-container table {
+  width: 100%; 
+}
+
+.city-container th,
+.city-container td {
+  padding: 5px; 
+  font-size: 12px; 
+  text-align: center; 
+}
+
+.city-container h3 {
+  font-size: 14px; 
+  margin-bottom: 10px; 
 }

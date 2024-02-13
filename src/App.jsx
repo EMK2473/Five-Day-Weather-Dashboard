@@ -4,18 +4,20 @@ import { useState } from 'react';
 import './App.css';
 import React from 'react';
 import SearchForm from './components/SearchForm'; 
-import WeatherGrid from './components/WeatherGrid'; // Import WeatherGrid component
+import WeatherGrid from './components/WeatherGrid';
+import CityWeatherTables from './components/CityWeatherTables'; // Import CityWeatherTables component
 
 function App() {
   const [count, setCount] = useState(0);
 
-  // Placeholder city object with dummy weather information
-  const placeholderCity = {
-    city: 'New York',
-    temperature: '25°C',
-    wind: '10 mph',
-    humidity: '60%'
-  };
+  // Placeholder cities
+  const cities = [
+    { name: 'New York' },
+    { name: 'Los Angeles' },
+    { name: 'Chicago' },
+    { name: 'Houston' },
+    { name: 'Phoenix' }
+  ];
 
   return (
     <div>
@@ -24,18 +26,17 @@ function App() {
       </header>
       <div className="container">
         <aside className="aside">
-          {/* Add the SearchForm component here */}
           <SearchForm />
         </aside>
         <div>
           <div className="body-container">
             <main className="main">
-              {/* Render the WeatherGrid component with placeholder city data */}
-              <WeatherGrid city={placeholderCity.city} />
+              <WeatherGrid city="New York" />
             </main>
           </div>
           <div className="body-container">
             <main className="main">
+              <CityWeatherTables cities={cities} />
             </main>
           </div>
         </div>
