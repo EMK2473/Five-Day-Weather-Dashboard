@@ -1,32 +1,38 @@
 // WeatherGrid.jsx
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 function WeatherGrid({ city }) {
-  // Placeholder values for temperature, wind, and humidity
-  const temperature = '25°C';
-  const wind = '10 mph';
-  const humidity = '60%';
+  const [weatherData, setWeatherData] = useState(null);
+
+  useEffect(() => {
+    const fetchWeatherData = async () => {
+      try {
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=1e27d7859898089c77e02a338285d98b&units=metric`);
+        const data = await response.json();
+        setWeatherData(data);
+      } catch (error) {
+        console.error('Error fetching weather data:', error);
+      }
+    };
+
+    if (city) {
+      fetchWeatherData();
+    }
+  }, [city]);
+
+  if (!weatherData) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div style={{ border: '1px solid #ccc', padding: '10px', marginBottom: '20px' }}>
       <h2 style={{ marginBottom: '10px' }}>{city} ☀️</h2>
-      <table style={{ borderCollapse: 'collapse', width: '100%' }}>
-        <tbody>
-          <tr style={{ borderTop: '1px solid #fff' }}>
-            <td style={{ borderTop: '1px solid #fff', padding: '5px 0' }}>Temperature:</td>
-            <td style={{ borderTop: '1px solid #fff', padding: '5px 0' }}>{temperature}</td>
-          </tr>
-          <tr style={{ borderTop: '1px solid #fff' }}>
-            <td style={{ borderTop: '1px solid #fff', padding: '5px 0' }}>Wind:</td>
-            <td style={{ borderTop: '1px solid #fff', padding: '5px 0' }}>{wind}</td>
-          </tr>
-          <tr style={{ borderTop: '1px solid #fff' }}>
-            <td style={{ borderTop: '1px solid #fff', padding: '5px 0' }}>Humidity:</td>
-            <td style={{ borderTop: '1px solid #fff', padding: '5px 0' }}>{humidity}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div>
+        <p>Temperature: {weatherData.main.temp}°C</p>
+        <p>Wind: {weatherData.wind.speed} m/s</p>
+        <p>Humidity: {weatherData.main.humidity}%</p>
+      </div>
     </div>
   );
 }

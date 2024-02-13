@@ -1,6 +1,7 @@
+// SearchForm.jsx
 import React, { useState } from "react";
 
-function SearchForm() {
+function SearchForm({ onSearch }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [recentCities, setRecentCities] = useState(
     JSON.parse(localStorage.getItem("recentCities")) || []
@@ -9,20 +10,15 @@ function SearchForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${searchTerm}&appid=1e27d7859898089c77e02a338285d98b&units=imperial`
-      );
-      const data = await response.json();
+      await onSearch(searchTerm);
       const updatedCities = [searchTerm, ...recentCities.slice(0, 4)];
       setRecentCities(updatedCities);
       localStorage.setItem("recentCities", JSON.stringify(updatedCities));
-      console.log(data);
       setSearchTerm("");
     } catch (error) {
       console.error("Error fetching weather data:", error);
     }
   };
-  
 
   return (
     <div>
@@ -34,7 +30,10 @@ function SearchForm() {
           borderBottom: "1px solid #ccc",
         }}
       >
-        <form style={{ display: "flex", alignItems: "center" }} onSubmit={handleSubmit}>
+        <form
+          style={{ display: "flex", alignItems: "center" }}
+          onSubmit={handleSubmit}
+        >
           <input
             type="text"
             placeholder="Search..."
@@ -53,7 +52,9 @@ function SearchForm() {
           style={{ display: "grid", gridTemplateColumns: "1fr", gap: "10px" }}
         >
           {recentCities.map((city, index) => (
-            <button key={index}>{city}</button>
+            <button key={index} onClick={() => onSearch(city)}>
+              {city}
+            </button>
           ))}
         </div>
       </div>

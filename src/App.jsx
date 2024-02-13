@@ -5,19 +5,14 @@ import './App.css';
 import React from 'react';
 import SearchForm from './components/SearchForm'; 
 import WeatherGrid from './components/WeatherGrid';
-import CityWeatherTables from './components/CityWeatherTables'; // Import CityWeatherTables component
+import CityWeatherTables from './components/CityWeatherTables';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [searchedCity, setSearchedCity] = useState(null);
 
-  // Placeholder cities
-  const cities = [
-    { name: 'New York' },
-    { name: 'Los Angeles' },
-    { name: 'Chicago' },
-    { name: 'Houston' },
-    { name: 'Phoenix' }
-  ];
+  const handleSearch = (city) => {
+    setSearchedCity(city);
+  };
 
   return (
     <div>
@@ -26,17 +21,17 @@ function App() {
       </header>
       <div className="container">
         <aside className="aside">
-          <SearchForm />
+          <SearchForm onSearch={handleSearch} />
         </aside>
         <div>
           <div className="body-container">
             <main className="main">
-              <WeatherGrid city="New York" />
+              {searchedCity && <WeatherGrid city={searchedCity} />}
             </main>
           </div>
           <div className="body-container">
             <main className="main">
-              <CityWeatherTables cities={cities} />
+              <CityWeatherTables city={searchedCity} />
             </main>
           </div>
         </div>
