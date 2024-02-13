@@ -25,16 +25,35 @@ function CityWeatherTables({ city }) {
     return <div>Loading...</div>;
   }
 
+  // Helper function to format date into Month/Day/Year format
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const options = { month: 'short', day: 'numeric', year: 'numeric' };
+    return date.toLocaleDateString('en-US', options);
+  };
+
+  // Filter out one forecast per day for the next 5 days
+  const filteredForecasts = weatherData.list.reduce((acc, forecast) => {
+    const date = forecast.dt_txt.split(' ')[0];
+    if (!acc[date]) {
+      acc[date] = forecast;
+    }
+    return acc;
+  }, {});
+
+  const forecastsArray = Object.values(filteredForecasts).slice(0, 5);
+
   return (
     <div className="city-weather-tables">
-      <h2>{city}</h2>
-      <ul>
-        {weatherData.list && weatherData.list.map((forecast, idx) => (
-          <li key={idx}>
-            <h3>Date: {forecast.dt_txt}</h3>
-            <p>Temperature: {forecast.main.temp}°C</p>
-            <p>Wind: {forecast.wind.speed} m/s</p>
-            <p>Humidity: {forecast.main.humidity}%</p>
+      <ul className="forecast-list">
+        {forecastsArray.map((forecast, idx) => (
+          <li key={idx} className="forecast-item">
+            <div>
+              <h3>Date: {formatDate(forecast.dt_txt)}</h3>
+              <p>Temperature: {forecast.main.temp}°C</p>
+              <p>Wind: {forecast.wind.speed} m/s</p>
+              <p>Humidity: {forecast.main.humidity}%</p>
+            </div>
           </li>
         ))}
       </ul>
