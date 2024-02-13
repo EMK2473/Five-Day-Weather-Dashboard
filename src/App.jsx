@@ -1,6 +1,6 @@
 // App.js
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import React from 'react';
 import SearchForm from './components/SearchForm'; 
@@ -9,6 +9,13 @@ import CityWeatherTables from './components/CityWeatherTables';
 
 function App() {
   const [searchedCity, setSearchedCity] = useState(null);
+
+  useEffect(() => {
+    const recentCities = JSON.parse(localStorage.getItem("recentCities"));
+    if (recentCities && recentCities.length > 0) {
+      setSearchedCity(recentCities[0]);
+    }
+  }, []);
 
   const handleSearch = (city) => {
     setSearchedCity(city);
@@ -31,7 +38,7 @@ function App() {
           </div>
           <div className="body-container">
             <main className="main">
-              <CityWeatherTables city={searchedCity} />
+              {searchedCity && <CityWeatherTables city={searchedCity} />}
             </main>
           </div>
         </div>
