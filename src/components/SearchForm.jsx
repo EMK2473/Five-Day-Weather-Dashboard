@@ -52,7 +52,18 @@ function SearchForm({ onSearch }) {
           style={{ display: "grid", gridTemplateColumns: "1fr", gap: "10px" }}
         >
           {recentCities.map((city, index) => (
-            <button key={index} onClick={() => onSearch(city)}>
+            <button
+              key={index}
+              onClick={() => onSearch(city)}
+              style={{
+                backgroundColor: "#4A555F",
+                color: "#F4CB5C", 
+                padding: "8px",
+                border: "none",
+                borderRadius: "5px",
+                cursor: "pointer",
+              }}
+            >
               {city}
             </button>
           ))}

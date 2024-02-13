@@ -32,16 +32,16 @@ function CityWeatherTables({ city }) {
 
   return (
     <div className="weather-container">
-      <div className="forecast-title">{city}'s 5-Day Forecast</div>
+<div className="forecast-title" style={{ color: "#F4CB5C", textDecoration: "underline", textDecorationColor: "white" }}>{city}'s 5-Day Forecast</div>
       <div className="city-weather-tables">
         <ul className="forecast-list">
           {weatherData.list.slice(0, 5).map((forecast, idx) => (
             <li key={idx} className="forecast-item">
-              <div className="city-container">
-                <h3>Date: {formatDate(forecast.dt_txt)}</h3>
-                <p>Temp: {forecast.main.temp}°C</p>
-                <p>Wind: {forecast.wind.speed} m/s</p>
-                <p>Humidity: {forecast.main.humidity}%</p>
+              <div className="city-container"style={{backgroundColor: "#4A555F"}}>
+                <h3>Date: <span style={{ color: '#F4CB5C' }}>{formatDate(forecast.dt_txt)}</span></h3>
+                <p>Temp: <span style={{ color: '#F4CB5C' }}>{forecast.main.temp}°C</span></p>
+                <p>Wind: <span style={{ color: '#F4CB5C' }}>{forecast.wind.speed} m/s</span></p>
+                <p>Humidity: <span style={{ color: '#F4CB5C' }}>{forecast.main.humidity}%</span></p>
                 <img
                   src={`https://openweathermap.org/img/wn/${forecast.weather[0].icon}.png`}
                   alt={forecast.weather[0].description}

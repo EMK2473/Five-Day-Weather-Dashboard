@@ -40,23 +40,24 @@ function WeatherGrid({ city }) {
         marginBottom: "20px",
         display: "flex",
         justifyContent: "space-between",
+        backgroundColor: "#4A555F"
       }}
     >
       <div>
-        <h2>{city}</h2>
-        <p>Temperature: {weatherData.main.temp}°C</p>
-        <p>Wind: {weatherData.wind.speed} m/s</p>
-        <p>Humidity: {weatherData.main.humidity}%</p>
+      <h2 style={{ color: "#F4CB5C", textDecoration: "underline", textDecorationColor: "white" }}>{city}</h2>
+        <p>Temperature: <span style={{ color: "#F4CB5C" }}>{weatherData.main.temp}°C</span></p>
+        <p>Wind: <span style={{ color: "#F4CB5C" }}>{weatherData.wind.speed} m/s</span></p>
+        <p>Humidity: <span style={{ color: "#F4CB5C" }}>{weatherData.main.humidity}%</span></p>
         <img
           src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`}
           alt={weatherData.weather[0].description}
         />
       </div>
       <div style={{marginTop: "25px", marginRight: "300px"}}>
-        <p>Pressure: {weatherData.main.pressure} hPa</p>
-        <p>Visibility: {weatherData.visibility} meters</p>
-        <p>Sunrise: {sunriseTime}</p>
-        <p>Sunset: {sunsetTime}</p>
+        <p>Pressure: <span style={{ color: "#F4CB5C" }}>{weatherData.main.pressure} hPa</span></p>
+        <p>Visibility: <span style={{ color: "#F4CB5C" }}>{weatherData.visibility} meters</span></p>
+        <p>Sunrise: <span style={{ color: "#F4CB5C" }}>{sunriseTime}</span></p>
+        <p>Sunset: <span style={{ color: "#F4CB5C" }}>{sunsetTime}</span></p>
       </div>
     </div>
   );
