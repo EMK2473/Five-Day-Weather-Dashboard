@@ -1,4 +1,3 @@
-// SearchForm.jsx
 import React, { useState } from "react";
 
 function SearchForm({ onSearch }) {
@@ -28,6 +27,7 @@ function SearchForm({ onSearch }) {
           justifyContent: "center",
           alignItems: "center",
           borderBottom: "1px solid #ccc",
+          padding: "10px", // Added padding to the search bar
         }}
       >
         <form
@@ -37,11 +37,23 @@ function SearchForm({ onSearch }) {
           <input
             type="text"
             placeholder="Search..."
-            style={{ marginRight: "10px" }}
+            style={{ marginRight: "10px", padding: "8px" }} // Added padding to the search bar
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <button type="submit">Search</button>
+          <button
+            type="submit"
+            style={{
+              padding: "8px 16px", // Added padding to the search button
+              backgroundColor: "#4A555F",
+              color: "#F4CB5C", // Added color property
+              border: "none",
+              borderRadius: "5px",
+              cursor: "pointer",
+            }}
+          >
+            Search
+          </button>
         </form>
       </div>
       <div
@@ -57,8 +69,8 @@ function SearchForm({ onSearch }) {
               onClick={() => onSearch(city)}
               style={{
                 backgroundColor: "#4A555F",
-                color: "#F4CB5C", 
-                padding: "8px",
+                color: "#F4CB5C",
+                padding: "8px", 
                 border: "none",
                 borderRadius: "5px",
                 cursor: "pointer",

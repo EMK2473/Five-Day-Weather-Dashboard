@@ -23,8 +23,8 @@ function App() {
 
   return (
     <div>
-      <header className="header">
-        <h1 className="title">Five Day Weather Forecast</h1>
+      <header className="header" style={{backgroundColor: "#4A555F", color: "#F4CB5C", textDecoration: "underline", textDecorationColor: "white"}}>
+        <h1 style={{color: "#F4CB5C"}} className="title">Five Day Weather Forecast</h1>
       </header>
       <div className="container">
         <aside className="aside">
