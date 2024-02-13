@@ -1,14 +1,21 @@
 // App.js
 
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
 import './App.css';
 import React from 'react';
-import SearchForm from '../src/components/SearchForm.jsx'; 
+import SearchForm from './components/SearchForm'; 
+import WeatherGrid from './components/WeatherGrid'; // Import WeatherGrid component
 
 function App() {
   const [count, setCount] = useState(0);
+
+  // Placeholder city object with dummy weather information
+  const placeholderCity = {
+    city: 'New York',
+    temperature: '25°C',
+    wind: '10 mph',
+    humidity: '60%'
+  };
 
   return (
     <div>
@@ -23,12 +30,12 @@ function App() {
         <div>
           <div className="body-container">
             <main className="main">
-              {/* Content for the first body container */}
+              {/* Render the WeatherGrid component with placeholder city data */}
+              <WeatherGrid city={placeholderCity.city} />
             </main>
           </div>
           <div className="body-container">
             <main className="main">
-              {/* Content for the second body container */}
             </main>
           </div>
         </div>
