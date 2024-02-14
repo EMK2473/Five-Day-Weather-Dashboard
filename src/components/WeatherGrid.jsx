@@ -46,6 +46,11 @@ function WeatherGrid({ city, onSuccessfulSearch }) {
     }
   }, [city, weatherData]);
 
+  // Function to convert Celsius to Fahrenheit
+  const celsiusToFahrenheit = (celsius) => {
+    return (celsius * 9/5) + 32;
+  };
+
   // Render loading message if weather data is not yet available
   if (!weatherData) {
     return <div>Loading...</div>;
@@ -76,10 +81,11 @@ function WeatherGrid({ city, onSuccessfulSearch }) {
         <h2 style={{ color: "#F4CB5C", textDecoration: "underline", textDecorationColor: "white" }}>
           {city}
         </h2>
-        {/* Display temperature, wind speed, humidity, and weather icon */}
+        {/* Display temperature in Fahrenheit */}
         <p>
-          Temperature: <span style={{ color: "#F4CB5C" }}>{weatherData.main.temp}°C</span>
+          Temperature: <span style={{ color: "#F4CB5C" }}>{celsiusToFahrenheit(weatherData.main.temp)}°F</span>
         </p>
+        {/* Display other weather data */}
         <p>
           Wind: <span style={{ color: "#F4CB5C" }}>{weatherData.wind.speed} m/s</span>
         </p>
@@ -89,7 +95,7 @@ function WeatherGrid({ city, onSuccessfulSearch }) {
         <img src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`} alt={weatherData.weather[0].description} />
       </div>
       <div style={{ marginTop: "25px", marginRight: "300px" }}>
-        {/* Display pressure, visibility, sunrise, and sunset times */}
+        {/* Display other weather data */}
         <p>
           Pressure: <span style={{ color: "#F4CB5C" }}>{weatherData.main.pressure} hPa</span>
         </p>

@@ -42,6 +42,11 @@ function CityWeatherTables({ city }) {
     return date.toLocaleDateString('en-US', options);
   };
 
+  // Helper function to convert Celsius to Fahrenheit
+  const celsiusToFahrenheit = (celsius) => {
+    return (celsius * 9/5) + 32;
+  };
+
   // Render weather data once available
   return (
     <div className="weather-container">
@@ -55,8 +60,8 @@ function CityWeatherTables({ city }) {
               <div className="city-container" style={{backgroundColor: "#4A555F"}}>
                 {/* Display forecast date */}
                 <h3>Date: <span style={{ color: '#F4CB5C' }}>{formatDate(forecast.dt_txt)}</span></h3>
-                {/* Display forecast temperature */}
-                <p>Temp: <span style={{ color: '#F4CB5C' }}>{forecast.main.temp}°C</span></p>
+                {/* Display forecast temperature in Celsius and Fahrenheit */}
+                <p>Temp: <span style={{ color: '#F4CB5C' }}>{celsiusToFahrenheit(forecast.main.temp)}°F</span></p>
                 {/* Display forecast wind speed */}
                 <p>Wind: <span style={{ color: '#F4CB5C' }}>{forecast.wind.speed} m/s</span></p>
                 {/* Display forecast humidity */}
