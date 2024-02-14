@@ -46,9 +46,10 @@ function WeatherGrid({ city, onSuccessfulSearch }) {
     }
   }, [city, weatherData]);
 
-  // Function to convert Celsius to Fahrenheit
+  // Function to convert Celsius to Fahrenheit and format to 2 decimal places
   const celsiusToFahrenheit = (celsius) => {
-    return (celsius * 9/5) + 32;
+    const fahrenheit = (celsius * 9/5) + 32;
+    return fahrenheit.toFixed(2);
   };
 
   // Render loading message if weather data is not yet available

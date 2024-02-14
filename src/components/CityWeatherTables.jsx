@@ -42,9 +42,9 @@ function CityWeatherTables({ city }) {
     return date.toLocaleDateString('en-US', options);
   };
 
-  // Helper function to convert Celsius to Fahrenheit
+  // Helper function to convert Celsius to Fahrenheit and format to 2 decimal places
   const celsiusToFahrenheit = (celsius) => {
-    return (celsius * 9/5) + 32;
+    return ((celsius * 9/5) + 32).toFixed(2);
   };
 
   // Render weather data once available
