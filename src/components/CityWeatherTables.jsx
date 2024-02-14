@@ -10,12 +10,14 @@ function CityWeatherTables({ city }) {
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
-        // Fetch weather data from OpenWeatherMap API
+        // Fetch weather data from OpenWeatherMap API for 5 days with 3-hour interval
         const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=1e27d7859898089c77e02a338285d98b&units=metric`);
         // Parse the response as JSON
         const data = await response.json();
+        // Filter the data to get only one data point per day
+        const dailyData = data.list.filter((forecast, index) => index % 8 === 0); // Selecting every 8th element to get data for every day
         // Update the weather data state with the fetched data
-        setWeatherData(data);
+        setWeatherData(dailyData);
       } catch (error) {
         // Log any errors that occur during fetching
         console.error('Error fetching weather data:', error);
@@ -47,8 +49,8 @@ function CityWeatherTables({ city }) {
       <div className="forecast-title" style={{ color: "#F4CB5C", textDecoration: "underline", textDecorationColor: "white" }}>{city}'s 5-Day Forecast</div>
       <div className="city-weather-tables">
         <ul className="forecast-list">
-          {/* Map through the first 5 forecasts and render each */}
-          {weatherData.list.slice(0, 5).map((forecast, idx) => (
+          {/* Map through the 5-day forecast data and render each */}
+          {weatherData.map((forecast, idx) => (
             <li key={idx} className="forecast-item">
               <div className="city-container" style={{backgroundColor: "#4A555F"}}>
                 {/* Display forecast date */}
