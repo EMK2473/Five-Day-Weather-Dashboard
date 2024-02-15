@@ -1,46 +1,34 @@
-// Import React hooks
 import React, { useState, useEffect } from "react";
 
-// SearchForm component for handling city search and displaying recent searches
 function SearchForm({ onSearch }) {
-  // State variables for search term, recent cities, and search success status
   const [searchTerm, setSearchTerm] = useState("");
   const [recentCities, setRecentCities] = useState([]);
   const [searchSuccess, setSearchSuccess] = useState(true);
 
-  // useEffect hook to load recent cities from local storage on component mount
   useEffect(() => {
     const storedCities = JSON.parse(localStorage.getItem("recentCities")) || [];
     setRecentCities(storedCities);
   }, []);
 
-  // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Perform city search using the provided onSearch function
       const response = await onSearch(searchTerm);
-      // If search is successful, update recent cities list and store it in local storage
       if (response.ok) {
         const updatedCities = [searchTerm, ...recentCities.filter(city => city !== searchTerm).slice(0, 4)];
         setRecentCities(updatedCities);
         localStorage.setItem("recentCities", JSON.stringify(updatedCities));
         setSearchSuccess(true);
       } else {
-        // If search is unsuccessful, set search success status to false
         setSearchSuccess(false);
       }
-      // Clear search term input field after submission
       setSearchTerm("");
     } catch (error) {
-      // Log error if fetching weather data fails
       console.error("Error fetching weather data:", error);
-      // Set search success status to false
       setSearchSuccess(false);
     }
   };
 
-  // Render search form and recent cities list
   return (
     <div>
       <div
@@ -79,7 +67,6 @@ function SearchForm({ onSearch }) {
           </button>
         </form>
       </div>
-      {/* Display error message if search is unsuccessful */}
       {!searchSuccess && (
         <p style={{ color: "red", textAlign: "center" }}>
           Search unsuccessful. Please try again.
